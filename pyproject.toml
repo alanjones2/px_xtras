@@ -1,8 +1,12 @@
 [project]
 name = "plotly-xtras"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "Extra charts for Plotly Express: waterfall, dumbbell, waffle, and more."
+authors = [
+    { name = "Alan Jones" }
+]
 readme = "README.md"
+license = { text = "MIT" }
 requires-python = ">=3.13"
 dependencies = [
     "matplotlib>=3.10.3",
