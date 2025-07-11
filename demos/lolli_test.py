@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 import streamlit as st
 import pandas as pd
-import plotly_extras_0_2 as pxs
+import plotly_xtras as pxs
 
 def draw_lollipop_chart(categories, values, title="Lollipop Chart", stick_color='gray', marker_color='blue'):
     """

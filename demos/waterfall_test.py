@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly_extras_0_2 as ph
+import plotly_xtras as ph
 
 st.title("Waterfall Chart Tests")
 

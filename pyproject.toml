@@ -1,5 +1,5 @@
 [project]
-name = "plotly_extras_0_2"
+name = "plotly_xtras"
 version = "0.2.0"
 description = "Extra charts for Plotly Express: waterfall, dumbbell, waffle, and more."
 authors = [
