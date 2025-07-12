@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly_xtras as ph
+import plotly_xtras as px
 
 st.title("Waterfall Chart Tests")
 
@@ -13,7 +13,7 @@ df = pd.DataFrame({
 
 measure = ['relative', 'relative', 'relative', 'total', 'relative', 'relative', 'total']
 
-fig1 = ph.waterfall(
+fig1 = px.waterfall(
     df=df,
     category_col='Category',
     value_col='Value',
@@ -25,7 +25,7 @@ st.plotly_chart(fig1)
 
 # --- Test with Custom Colors ---
 st.header("Waterfall Chart with Custom Colors")
-fig2 = ph.waterfall(
+fig2 = px.waterfall(
     df=df,
     category_col='Category',
     value_col='Value',
@@ -43,7 +43,7 @@ st.header("Waterfall Chart with Absolute Measure and Annotations")
 annotations = ['start', 'up', 'down', 'subtotal', 'up', 'down', 'end']
 absolute_measure = ['absolute', 'relative', 'relative', 'total', 'relative', 'relative', 'total']
 
-fig3 = ph.waterfall(
+fig3 = px.waterfall(
     df=df,
     category_col='Category',
     value_col='Value',

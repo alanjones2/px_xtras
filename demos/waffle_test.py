@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly_xtras as ph
+import plotly_xtras as px
 
 st.title("Waffle Chart Tests")
 
@@ -9,7 +9,7 @@ st.header("Waffle Chart from DataFrame")
 waffle_data = {'Others': 49, 'Reform': 5, 'LD': 72, 'Conservative': 121, 'Labour': 403}
 waffle_df = pd.DataFrame(list(waffle_data.items()), columns=['Party', 'Seats'])
 
-fig1 = ph.waffle(
+fig1 = px.waffle(
     df=waffle_df,
     category_col='Party',
     value_col='Seats',
@@ -20,7 +20,7 @@ st.plotly_chart(fig1)
 
 # --- Test with Custom Grid Width ---
 st.header("Waffle Chart with Custom Grid Width")
-fig2 = ph.waffle(
+fig2 = px.waffle(
     df=waffle_df,
     category_col='Party',
     value_col='Seats',

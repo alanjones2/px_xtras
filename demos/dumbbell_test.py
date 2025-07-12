@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly_xtras as ph
+import plotly_xtras as px
 
 st.title("Dumbbell Chart Tests")
 
@@ -12,7 +12,7 @@ df = pd.DataFrame({
     'After': [135, 95, 160, 120]
 })
 
-fig1 = ph.dumbbell(
+fig1 = px.dumbbell(
     df=df,
     category_col='Product',
     value1_col='Before',
@@ -25,7 +25,7 @@ st.plotly_chart(fig1)
 
 # --- Test Vertical Orientation ---
 st.header("Vertical Dumbbell Chart")
-fig2 = ph.dumbbell(
+fig2 = px.dumbbell(
     df=df,
     category_col='Product',
     value1_col='Before',
@@ -39,7 +39,7 @@ st.plotly_chart(fig2)
 
 # --- Test Customization Parameters ---
 st.header("Customized Dumbbell Chart")
-fig3 = ph.dumbbell(
+fig3 = px.dumbbell(
     df=df,
     category_col='Product',
     value1_col='Before',

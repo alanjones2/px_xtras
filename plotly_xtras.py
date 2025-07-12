@@ -344,11 +344,27 @@ def dumbbell(
 
     for cat, val1, val2 in zip(categories, values1, values2):
         if orientation == 'h':
-            fig.add_annotation(x=val1, y=cat, text=str(val1), showarrow=False, font=dict(color=marker_color1), xanchor='right', yanchor='middle', xshift=-5)
-            fig.add_annotation(x=val2, y=cat, text=str(val2), showarrow=False, font=dict(color=marker_color2), xanchor='left', yanchor='middle', xshift=5)
+            # Determine which value is smaller/larger for correct label placement
+            if val1 < val2:
+                xanchor1, xshift1 = 'right', -5
+                xanchor2, xshift2 = 'left', 5
+            else:  # val1 >= val2
+                xanchor1, xshift1 = 'left', 5
+                xanchor2, xshift2 = 'right', -5
+
+            fig.add_annotation(x=val1, y=cat, text=str(val1), showarrow=False, font=dict(color=marker_color1), xanchor=xanchor1, yanchor='middle', xshift=xshift1)
+            fig.add_annotation(x=val2, y=cat, text=str(val2), showarrow=False, font=dict(color=marker_color2), xanchor=xanchor2, yanchor='middle', xshift=xshift2)
         else:
-            fig.add_annotation(x=cat, y=val1, text=str(val1), showarrow=False, font=dict(color=marker_color1), yanchor='top', xanchor='center', yshift=-5)
-            fig.add_annotation(x=cat, y=val2, text=str(val2), showarrow=False, font=dict(color=marker_color2), yanchor='bottom', xanchor='center', yshift=5)
+            # Determine which value is smaller/larger for correct label placement
+            if val1 < val2:
+                yanchor1, yshift1 = 'top', -5
+                yanchor2, yshift2 = 'bottom', 5
+            else:  # val1 >= val2
+                yanchor1, yshift1 = 'bottom', 5
+                yanchor2, yshift2 = 'top', -5
+
+            fig.add_annotation(x=cat, y=val1, text=str(val1), showarrow=False, font=dict(color=marker_color1), yanchor=yanchor1, xanchor='center', yshift=yshift1)
+            fig.add_annotation(x=cat, y=val2, text=str(val2), showarrow=False, font=dict(color=marker_color2), yanchor=yanchor2, xanchor='center', yshift=yshift2)
 
     fig.update_layout(
         title=title,
@@ -403,3 +419,46 @@ def line_range(
     label1 = None
     label2 = None
     return dumbbell(df, category_col, value1_col, value2_col, categories, values1, values2, label1, label2, title, orientation, marker_color1, marker_color2, line_color, marker_size, line_width)
+
+def lollipop_chart(categories, values, title="Lollipop Chart", stick_color='gray', marker_color='blue'):
+    """
+    Draws a lollipop chart using Plotly.
+
+    Parameters:
+        categories (list): List of category labels (x-axis).
+        values (list): List of numerical values (y-axis).
+        title (str): Title of the chart.
+    """
+    if len(categories) != len(values):
+        raise ValueError("Length of categories and values must match.")
+
+    fig = go.Figure()
+
+    # Add vertical lines (sticks of the lollipops)
+    for i, (x, y) in enumerate(zip(categories, values)):
+        fig.add_trace(go.Scatter(
+            x=[x, x],
+            y=[0, y],
+            mode='lines',
+            line=dict(color=stick_color, width=2),
+            showlegend=False
+        ))
+
+    # Add markers (lollipop heads)
+    fig.add_trace(go.Scatter(
+        x=categories,
+        y=values,
+        mode='markers',
+        marker=dict(color=marker_color, size=10),
+        name='Value'
+    ))
+
+    fig.update_layout(
+        title=title,
+        xaxis_title="Category",
+        yaxis_title="Value",
+        template="plotly_white",
+        showlegend=False,
+    )
+
+    return fig
