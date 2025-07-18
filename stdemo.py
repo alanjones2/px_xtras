@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly_xtras as px
+import px_xtras as pxx
 
 st.title("Extra Plotly Charts")
 
@@ -12,7 +12,7 @@ waterfall_df = pd.DataFrame({
     'Value': [100, 50, -20, 130, 40, -10, 160]
 })
 measure = ['relative','relative', 'relative','total', 'relative','relative','total']
-fig_waterfall = px.waterfall(df=waterfall_df, 
+fig_waterfall = pxx.waterfall(df=waterfall_df, 
                              category_col='Category', 
                              value_col='Value', 
                              title="Profit/Loss",
@@ -27,7 +27,7 @@ st.header("Waffle Chart")
 waffle_data = {'Others': 54, 'LD': 72, 'Conservative': 121, 'Labour': 403}
 waffle_df = pd.DataFrame(list(waffle_data.items()), columns=['Party', 'Seats'])
 
-fig_waffle = px.waffle(df=waffle_df, 
+fig_waffle = pxx.waffle(df=waffle_df, 
                        category_col='Party', 
                        value_col='Seats',
                        title='Waffle Chart of MPs',
@@ -44,7 +44,7 @@ dumbbell_df = pd.DataFrame({
     '2021': [12, 15, 11, 15, 12]
 })
 
-fig_dumbbell = px.dumbbell(df=dumbbell_df, 
+fig_dumbbell = pxx.dumbbell(df=dumbbell_df, 
                            category_col='Country', 
                            value1_col='2020', 
                            value2_col='2021',
@@ -55,7 +55,7 @@ st.plotly_chart(fig_dumbbell)
 
 # --- Vertical Dumbbell Chart ---
 st.header("Vertical Dumbbell Chart")
-fig_dumbbell_v = px.dumbbell(df=dumbbell_df, 
+fig_dumbbell_v = pxx.dumbbell(df=dumbbell_df, 
                              category_col='Country', 
                              value1_col='2020', 
                              value2_col='2021',
@@ -65,7 +65,7 @@ fig_dumbbell_v = px.dumbbell(df=dumbbell_df,
                              orientation='v')
 st.plotly_chart(fig_dumbbell_v)
 
-fig_range = px.line_range(df=dumbbell_df, 
+fig_range = pxx.line_range(df=dumbbell_df, 
                            category_col='Country', 
                            value1_col='2020', 
                            value2_col='2021',
